@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.james.webapp_init.mapper.SysRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="cn.james.webapp_init.entity.SysRolePermission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="rid" jdbcType="INTEGER" property="rid" />
+    <result column="perid" jdbcType="INTEGER" property="perid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, rid, perid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.james.webapp_init.entity.SysRolePermission" useGeneratedKeys="true">
+    insert into sys_role_permission (rid, perid)
+    values (#{rid,jdbcType=INTEGER}, #{perid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.james.webapp_init.entity.SysRolePermission" useGeneratedKeys="true">
+    insert into sys_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        rid,
+      </if>
+      <if test="perid != null">
+        perid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="perid != null">
+        #{perid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.james.webapp_init.entity.SysRolePermission">
+    update sys_role_permission
+    <set>
+      <if test="rid != null">
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="perid != null">
+        perid = #{perid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.james.webapp_init.entity.SysRolePermission">
+    update sys_role_permission
+    set rid = #{rid,jdbcType=INTEGER},
+      perid = #{perid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

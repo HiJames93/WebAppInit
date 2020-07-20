@@ -1,0 +1,69 @@
+spring:
+  #数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/webapp_init?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: glt123
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    logSlowSql: true
+  #thymeleaf配置
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+  #热部署的配置
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+#mybatis的配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: cn.james.webapp_init.entity
+#日志的设置
+logging:
+  level:
+    cn:
+      james:
+        webapp_init: debug
+
+#shiro的配置
+shiro:
+  hash-algorithm-name: md5
+  hash-iterations: 1024
+  login-url: /login.html
+  unauthorized-url: /login.html
+  anon-urls:
+    - /login.html
+    - swagger-ui.html
+    - /toLogin.do
+    - /admin/** #静态文件放行
+  authc-urls:
+    - /**
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+  port: 8097
+
