@@ -36,7 +36,8 @@ public class MyRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        logger.info("doGetAuthorizationInfo授权时调用");
+//        logger.info("doGetAuthorizationInfo授权时调用");
+        System.out.println("doGetAuthorizationInfo授权时调用");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         //获取手机号
         String telephone = (String) principalCollection.getPrimaryPrincipal();

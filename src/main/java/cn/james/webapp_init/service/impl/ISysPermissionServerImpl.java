@@ -18,7 +18,6 @@ import java.util.List;
  * @date: 2020-07-17 下午9:20
  * @version: 1.0
  */
-
 @Service
 public class ISysPermissionServerImpl implements ISysPermissionService {
 
